@@ -1,0 +1,167 @@
+---
+title: "Spiralcurriculum: <br>(Empirische) Forschungsmethoden"
+subtitle: "Informeller Austausch am 05.10.2021"  
+author: 
+  - "André Epp & Samuel Merk"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+library(xaringanExtra)
+style_mono_accent(base_color = "#8CD000",
+                  header_font_google = google_font("Cabin"),
+                  text_font_google   = google_font("Nunito")) 
+use_logo("https://live.staticflickr.com/65535/50856614551_e762846a98_k.jpg")
+```
+
+
+# Anliegen & Vorgehen
+* Anliegen
+    * Abstimmung der Inhalte der Vorlesung __Forschungsmethoden__ auf
+        * vorab- 
+        * und nachfolgende Veranstaltungen.
+* ¬ Anliegen
+    * "Hochschulpolitische" Diskussionen zu
+        * paradigmatischer Ausrichtung der Vorlesung, 
+        * Zuordnung zu Instituten 
+        * etc.
+* Vorgehen
+    * Wie sehen vergleichbare Veranstaltungen deutschlandweit aus?
+    * Wie sieht die Vorlesung __Forschungsmethoden__ aktuell aus?
+    * Welche Anknüpfungspunkte/Notwendige Vorabeiten sehen die Kolleg\*innen?
+
+---
+## Forschungsmethoden im Lehramtsstudium
+#### Dokumentenanalyse von _Hohenstein et al._ (2014):
+```{r, echo = F}
+library(tidyverse)
+library(reactable)
+tibble::tribble(
+                                                 ~Inhalte, ~`Anteil(%)`,
+                            "Bildungstheorien und -ziele",         87.5,
+                            "Didaktik/Unterrichtsplanung",         93.8,
+         "Unterrichtsmethoden/Einsatz von Aufgabenformen",         62.6,
+                     "Medienpädagogik/Einsatz von Medien",         62.5,
+                    "Beurteilung von Unterrichtsqualität",         75.0,
+                                           "Lerntheorien",         56.3,
+                           "Aktives Lernen und Verstehen",         18.8,
+                          "Lern- und Leistungsmotivation",         50.0,
+                            "Kenntnis von Lernstrategien",         25.0,
+               "Selbstbestimmtes und kooperatives Lernen",         50.0,
+              "Entwicklung von weiterführendem Interesse",         25.0,
+              "Päd. soz. und psych. Entwicklungstheorien",         81.3,
+                    "Benachteiligungen bei Lernprozessen",         62.5,
+       "Interkulturelle Bildungs- und Erziehungsprozesse",         81.3,
+                               "Bedeutung von Geschlecht",         62.5,
+                                       "Werte und Normen",         25.0,
+                  "Selbstbestimmtes Urteilen und Handeln",         25.0,
+             "Unterstützung der SuS im Umgang mit Krisen",         18.8,
+                             "Kommunikation/ Interaktion",         81.3,
+                            "Regeln der Gesprächsführung",         56.3,
+                                 "Risiken und Prävention",         50.0,
+                       "Konstruktive Konfliktbearbeitung",         56.3,
+                       "Individuelle Lernvoraussetzungen",         81.3,
+                 "Hoch-/Sonderbegabung und Lernstörungen",         56.3,
+                                  "Lernprozessdiagnostik",         75.0,
+                                "Prinzipien der Beratung",         43.8,
+                        "Formen der Leistungsbeurteilung",         62.5,
+                  "Bezugsysteme der Leistungsbeurteilung",         25.0,
+                             "Prinzipien der Rückmeldung",         25.0,
+                   "Bildungssystem und Schulorganisation",         68.8,
+                           "Rechtliche Rahmenbedingungen",         31.3,
+                           "Berufliche Wertvorstellungen",         68.8,
+                        "Belastungs- und Stressforschung",          6.3,
+                   "Selbst- und Fremdevaluationsmethoden",         68.8,
+                           "Ergebnisse Bildungsforschung",         87.5,
+                      "Kooperationsstrukturen an Schulen",         43.8,
+                                       "Bildungsaufträge",         50.0,
+                             "Ziele der Schulentwicklung",         87.5,
+                    "Bedingung erfolgreicher Kooperation",         43.8
+       ) %>% 
+  reactable(.,
+            defaultPageSize = 8)
+
+```
+
+
+        
+---
+## Forschungsmethoden im Lehramtsstudium
+### Dokumentenanalyse von _Stelter & Miethe_ (2019):     
+```{r fig.showtext = TRUE, echo = F}
+library(ggalt)
+tibble::tribble(
+                       ~Studiengang,      ~Paradigmen,    ~`Anzahl Module`,
+                 "Lehramt",          "Quali & Quanti",                 10L,
+                 "Lehramt",               "Nur Quali",                  3L,
+                 "Lehramt",              "Nur Quanti",                  2L,
+                 "Lehramt",              "Weder noch",                 34L,
+  "Erziehungswissenschaft",          "Quali & Quanti",                 84L,
+  "Erziehungswissenschaft",               "Nur Quali",                 16L,
+  "Erziehungswissenschaft",              "Nur Quanti",                 18L,
+  "Erziehungswissenschaft",              "Weder noch",                 68L
+  ) %>% 
+  ggplot(., aes(Paradigmen, `Anzahl Module`)) + 
+  geom_lollipop(size = 1.2) +
+  xlab("") +
+  coord_flip() +
+  facet_wrap(.~Studiengang, 
+             ncol = 2,
+             scales = "free_x") + theme_xaringan() + 
+  hrbrthemes::theme_ipsum()
+
+```
+
+        
+---
+## Inhalte: Einführung & Quanti
+* Wissenschaftstheoretische Grundlagen  
+    * Wissenschaft vs. Nichtwissenschaft
+    * Ontologische/Epistemologische Gemeinsamkeiten und Unterschiede in
+       * (Natural) Sciences
+       * Social Sciences
+       * Humanities
+       * Formal Sciences
+* Studienarten, Studiendesigns, Gütekriterien
+* Variablenarten, Datenerhebungsverfahren, Fragebogendesign
+* Empirische Häufigkeitsverteilungen (zentrale Tendenz, Streuung, Schiefe, Kurtosis, Modalität)
+* Zusammenhänge nominaler Variablen (Cramér's V)
+* Zusammenhänge ordinaler und intervallsk. Variablen (Kendall's $\tau$, Pearson's r)
+* Gruppenunterschiede in einer ordinalen oder intervallsk. Variable (Cliff's $\delta$, Cohen's d)
+
+> Zu allen Effektstärken werden p-Werte für Nullhypothesentests und JZS Bayes Faktoren _konzeptuell_ eingeführt. <br>Software: JASP, jamovi 
+
+---
+## Inhalte: Quali & Abschluss
+* Wissenschaftstheoretische Grundlagen qualitativer (rekonstruktiver) Forschung
+* Phasen im Forschungsprozess
+* Ethische Richtlinien
+* Erhebungsverfahren: Expert*inneninterviews, Leitfadeninterviews, (biografisch-)narrative Interviews, Gruppendiskussionen, teilnehmende Beobachtung
+* Datenaufbereitung: Transkription, Feldnotizen
+* Analyseverfahren: Qualitative Inhaltsanalyse, Grounded Theory, Narrationsanalyse
+* Triangulation
+* Gütekriterien
+* Computerunterstützung
+* Mixed Methods
